@@ -1,6 +1,7 @@
 import { siteConfig } from '@/lib/config'
 import { useGlobal } from '@/lib/global'
 import dynamic from 'next/dynamic'
+import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
@@ -86,7 +87,14 @@ const ShareButtons = ({ post }) => {
   const closePopover = () => {
     setQrCodeShow(false)
   }
-
+ const openRedirectShare = base => {
+    if (!shareUrl || typeof window === 'undefined') return
+    window.open(
+      `${base}${encodeURIComponent(shareUrl)}`,
+      '_blank',
+      'noopener,noreferrer'
+    )
+  }
   useEffect(() => {
     setShareUrl(window.location.href)
   }, [])
