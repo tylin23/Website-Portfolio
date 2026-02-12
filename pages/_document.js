@@ -6,10 +6,14 @@ import Document, { Head, Html, Main, NextScript } from 'next/document'
 const darkModeScript = `
 (function() {
   const darkMode = localStorage.getItem('darkMode')
+
   const prefersDark =
     window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+
   const defaultAppearance = '${BLOG.APPEARANCE || 'auto'}'
+
   let shouldBeDark = darkMode === 'true' || darkMode === 'dark'
+
   if (darkMode === null) {
     if (defaultAppearance === 'dark') {
       shouldBeDark = true
@@ -57,7 +61,7 @@ class MyDocument extends Document {
             </>
           )}
 
-  {/* 预先设置深色模式，避免闪烁 */}
+          {/* 预先设置深色模式，避免闪烁 */}
           <script dangerouslySetInnerHTML={{ __html: darkModeScript }} />
         </Head>
 

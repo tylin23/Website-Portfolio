@@ -1,20 +1,20 @@
-// pages/sitemap.xml.js/
+// pages/sitemap.xml.js
 import BLOG from '@/blog.config'
 import { siteConfig } from '@/lib/config'
-import { getGlobalData } from '@/lib/db/getSiteData'
+import { fetchGlobalAllData } from '@/lib/db/SiteDataApi'
 import { extractLangId, extractLangPrefix } from '@/lib/utils/pageId'
 import { getServerSideSitemap } from 'next-sitemap'
 
 export const getServerSideProps = async ctx => {
   let fields = []
   const siteIds = BLOG.NOTION_PAGE_ID.split(',')
-  
+
   for (let index = 0; index < siteIds.length; index++) {
     const siteId = siteIds[index]
     const id = extractLangId(siteId)
     const locale = extractLangPrefix(siteId)
     // 第一个id站点默认语言
-    const siteData = await getGlobalData({
+    const siteData = await fetchGlobalAllData({
       pageId: id,
       from: 'sitemap.xml'
     })
@@ -26,7 +26,9 @@ export const getServerSideProps = async ctx => {
     const localeFields = generateLocalesSitemap(link, siteData.allPages, locale)
     fields = fields.concat(localeFields)
   }
+
   fields = getUniqueFields(fields);
+
   // 缓存
   ctx.res.setHeader(
     'Cache-Control',
@@ -40,6 +42,7 @@ function generateLocalesSitemap(link, allPages, locale) {
   if (link && link.endsWith('/')) {
     link = link.slice(0, -1)
   }
+
   if (locale && locale.length > 0 && locale.indexOf('/') !== 0) {
     locale = '/' + locale
   }
@@ -99,6 +102,7 @@ function generateLocalesSitemap(link, allPages, locale) {
 
   return defaultFields.concat(postFields)
 }
+
 function getUniqueFields(fields) {
   const uniqueFieldsMap = new Map();
 
@@ -114,4 +118,3 @@ function getUniqueFields(fields) {
 }
 
 export default () => {}
-
