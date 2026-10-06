@@ -328,7 +328,7 @@ const LayoutSlug = props => {
               console.warn('找不到页面', router.asPath)
             })
           }
-       }
+        }
       }, waiting404)
     }
   }, [post])
@@ -458,7 +458,7 @@ const Layout404 = props => {
             <h2 className='m-0 p-0'>{locale.NAV.PAGE_NOT_FOUND_REDIRECT}</h2>
           </div>
         </div>
-    </div>
+      </div>
     </>
   )
 }

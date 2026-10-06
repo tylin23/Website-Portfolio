@@ -1,4 +1,7 @@
 /* eslint-disable react/no-unknown-property */
+import CONFIG from './config'
+import { themeConsoleStyle } from '@/lib/themeConsoleStyle'
+import { siteConfig } from '@/lib/config'
 /**
  * 此处样式只对当前主题生效
  * 此处不支持tailwindCSS的 @apply 语法
@@ -56,7 +59,9 @@ const Style = () => {
         scrollbar-width: thin;
         scrollbar-color: #3b82f6 transparent;
       }
-    `}</style>
+
+      ${[true, 'true'].includes(siteConfig('MATERY_USE_THEME_PALETTE', false, CONFIG)) ? themeConsoleStyle('matery', CONFIG) : ''}
+  `}</style>
   )
 }
 

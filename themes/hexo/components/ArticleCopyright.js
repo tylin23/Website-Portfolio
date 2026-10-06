@@ -5,8 +5,9 @@ import { useEffect, useState } from 'react'
 import CONFIG from '../config'
 import { siteConfig } from '@/lib/config'
 import NotByAI from '@/components/NotByAI'
+import { resolveArticleCopyrightText } from '@/lib/utils/articleCopyright'
 
-export default function ArticleCopyright() {
+export default function ArticleCopyright({ post }) {
   const router = useRouter()
   const [path, setPath] = useState(siteConfig('LINK') + router.asPath)
   useEffect(() => {
@@ -14,34 +15,39 @@ export default function ArticleCopyright() {
   })
 
   const { locale } = useGlobal()
+  const copyrightText = resolveArticleCopyrightText({
+    post,
+    locale,
+    mode: siteConfig('HEXO_ARTICLE_COPYRIGHT', null, CONFIG)
+  })
 
-  if (!siteConfig('HEXO_ARTICLE_COPYRIGHT', null, CONFIG)) {
+  if (!copyrightText) {
     return <></>
   }
 
   return (
     <section className='dark:text-gray-300 mt-6 mx-1 '>
       <ul className='overflow-x-auto whitespace-nowrap text-sm dark:bg-gray-900 bg-gray-100 p-5 leading-8 border-l-2 border-indigo-500'>
-    <li>
+        <li>
           <strong className='mr-2'>{locale.COMMON.AUTHOR}:</strong>
           <SmartLink href={'/about'} className='hover:underline'>
             {siteConfig('AUTHOR')}
           </SmartLink>
         </li>
         <li>
-        <strong className='mr-2'>{locale.COMMON.URL}:</strong>
+          <strong className='mr-2'>{locale.COMMON.URL}:</strong>
           <a
             className='whitespace-normal break-words hover:underline'
-            href={path}>
+            href={path}
+          >
             {path}
           </a>
         </li>
         <li>
           <strong className='mr-2'>{locale.COMMON.COPYRIGHT}:</strong>
-          {locale.COMMON.COPYRIGHT_NOTICE}
+          {copyrightText}
         </li>
-
-          {siteConfig('HEXO_ARTICLE_NOT_BY_AI', false, CONFIG) && (
+        {siteConfig('HEXO_ARTICLE_NOT_BY_AI', false, CONFIG) && (
           <li>
             <NotByAI />
           </li>

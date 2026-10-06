@@ -7,12 +7,12 @@ import SmartLink from '@/components/SmartLink'
  * @returns
  */
 export default function ArticleAround({ prev, next }) {
-  
   const { locale } = useGlobal()
+
   if (!prev || !next) {
     return <></>
   }
-  
+
   return (
     <section className='text-gray-800 dark:text-gray-400 flex items-center justify-between gap-x-3 my-4'>
       <SmartLink

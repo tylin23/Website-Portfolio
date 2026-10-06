@@ -2,6 +2,7 @@ import QrCode from '@/components/QrCode'
 import { siteConfig } from '@/lib/config'
 import { useRef, useState } from 'react'
 import { handleEmailClick } from '@/lib/plugins/mailEncrypt'
+
 /**
  * 社交联系方式按钮组
  * @returns {JSX.Element}
@@ -9,6 +10,7 @@ import { handleEmailClick } from '@/lib/plugins/mailEncrypt'
  */
 const SocialButton = () => {
   const CONTACT_GITHUB = siteConfig('CONTACT_GITHUB')
+  const CONTACT_ORCID = siteConfig('CONTACT_ORCID')
   const CONTACT_TWITTER = siteConfig('CONTACT_TWITTER')
   const CONTACT_TELEGRAM = siteConfig('CONTACT_TELEGRAM')
 
@@ -34,6 +36,7 @@ const SocialButton = () => {
 
   const emailIcon = useRef(null)
 
+
   return (
     <div className='w-full justify-center flex-wrap flex'>
       <div className='space-x-3 text-xl flex items-center text-gray-600 dark:text-gray-300 '>
@@ -44,6 +47,15 @@ const SocialButton = () => {
             title={'github'}
             href={CONTACT_GITHUB}>
             <i className='transform hover:scale-125 duration-150 fab fa-github dark:hover:text-green-400 hover:text-green-600' />
+          </a>
+        )}
+        {CONTACT_ORCID && (
+          <a
+            target='_blank'
+            rel='noreferrer'
+            title={'ORCID'}
+            href={CONTACT_ORCID}>
+            <i className='transform hover:scale-125 duration-150 fab fa-orcid dark:hover:text-green-400 hover:text-green-600' />
           </a>
         )}
         {CONTACT_TWITTER && (
@@ -93,7 +105,7 @@ const SocialButton = () => {
         )}
         {CONTACT_EMAIL && (
           <a
-           onClick={e => handleEmailClick(e, emailIcon, CONTACT_EMAIL)}
+            onClick={e => handleEmailClick(e, emailIcon, CONTACT_EMAIL)}
             title='email'
             className='cursor-pointer'
             ref={emailIcon}>
