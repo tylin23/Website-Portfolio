@@ -39,7 +39,7 @@
 - `components/AlgoliaSearchModal.js`：搜尋視窗文字繁中化
 - `components/ui/dashboard/DashboardButton.js`：「儀表板」
 - `components/AnalyticsBusuanzi.js`：PV / UV 之間加間距
-- `styles/notion.css`：`.notion-quote` 字級 0.8em、文字色 #374151
+- `styles/notion.css`：`.notion-quote` 字級 0.8em、文字色 #374151、左側邊線 4px（原 10px）
 
 ## hexo 主題（未使用，保留）
 

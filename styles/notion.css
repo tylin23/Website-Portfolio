@@ -2043,7 +2043,7 @@ svg + .notion-page-title-text {
   width: 100%;
   white-space: pre-wrap;
   word-break: break-word;
-  border-left: 10px solid;
+  border-left: 4px solid; /* edited: 原 10px */
   padding: 0.2em 0.9em;
   margin: 6px 0;
   font-size: 0.8em;
