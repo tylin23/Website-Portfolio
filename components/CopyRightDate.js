@@ -16,7 +16,6 @@ export default function CopyRightDate() {
     <span className='whitespace-nowrap flex items-center gap-x-1'>
       <i className='fas fa-copyright' />
       <span>{copyrightDate}</span>
-      
     </span>
   )
 }

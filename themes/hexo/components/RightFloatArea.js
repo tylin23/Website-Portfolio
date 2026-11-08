@@ -10,7 +10,7 @@ import ButtonJumpToTop from './ButtonJumpToTop'
  */
 export default function RightFloatArea({ floatSlot }) {
   const [showFloatButton, switchShow] = useState(false)
-  
+
   const scrollListener = useCallback(() => {
     const targetRef =
       document.getElementById('wrapper') || document.documentElement
@@ -43,7 +43,7 @@ export default function RightFloatArea({ floatSlot }) {
       })
     }
 
-    window.addEventListener('scroll', throttledScroll)
+    window.addEventListener('scroll', throttledScroll, { passive: true })
 
     // 初始调用一次检查初始状态
     scrollListener()

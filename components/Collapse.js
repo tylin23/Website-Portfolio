@@ -14,7 +14,6 @@ const Collapse = ({
   collapseRef
 }) => {
   const ref = useRef(null)
-  
 
   useImperativeHandle(collapseRef, () => {
     return {
@@ -108,6 +107,5 @@ const Collapse = ({
     </div>
   )
 }
-
 
 export default Collapse

@@ -1,5 +1,6 @@
 import { BeiAnGongAn } from '@/components/BeiAnGongAn'
 import DarkModeButton from '@/components/DarkModeButton'
+import AnalyticsBusuanzi from '@/components/AnalyticsBusuanzi'
 import { siteConfig } from '@/lib/config'
 /**
  * 页脚
@@ -26,16 +27,20 @@ export const Footer = props => {
           {/* 右侧链接 */}
           {/* <a href="#" className="text-black no-underline hover:underline">Privacy Policy</a> */}
           {siteConfig('BEI_AN') && (
-            <a href={siteConfig('BEI_AN_LINK')}
+            <a
+              href={siteConfig('BEI_AN_LINK')}
               className='text-black dark:text-gray-200 no-underline hover:underline ml-4'>
               {siteConfig('BEI_AN')}
             </a>
           )}
+          <span className='ml-4'>
+            <AnalyticsBusuanzi />
+          </span>
           <BeiAnGongAn />
           <span className='dark:text-gray-200 no-underline ml-4'>
             Powered by
             <a
-              href='https://github.com/tangly1024/NotionNext'
+              href='https://github.com/notionnext-org/NotionNext'
               className=' hover:underline'>
               NotionNext {siteConfig('VERSION')}
             </a>

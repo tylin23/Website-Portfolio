@@ -13,7 +13,7 @@ class Select extends React.Component {
     return (
       <div className='py-1 space-x-3'>
         <label className='text-gray-500'>{this.props.label}</label>
-         <select
+        <select
           value={this.props.value}
           onChange={this.handleChange}
           className='border p-1 rounded cursor-pointer'>
