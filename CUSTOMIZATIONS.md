@@ -53,3 +53,5 @@
 
 - `.github/workflows`：只保留 codeql、docker-ghcr、pushUrl、sync（sync 訊息繁中化）。
   上游新增的 ci、deploy-docs-site、labeler、originality-proofs、stale、bump-version 未加入，避免在本 repo 產生失敗的 Actions。
+- 從上游 v4.11.0 移植圖片修正（commit `d31a029e`）：支援 Notion 新檔案 CDN `file.notion.com`，
+  新增 `lib/db/notion/convertFileCdnUrl.js`，修改 `mapImage.js`、`getPostBlocks.js`。升級到 v4.11.0 以上即已內建，不需另外套用。
