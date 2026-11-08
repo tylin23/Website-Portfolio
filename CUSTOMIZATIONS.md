@@ -1,9 +1,10 @@
-# 本站客製紀錄（NotionNext 4.10.10）
+# 本站客製紀錄（NotionNext 4.11.1）
 
-本專案以上游 [notionnext-org/NotionNext](https://github.com/notionnext-org/NotionNext) `v4.10.10` 為基底，
+本專案以上游 [notionnext-org/NotionNext](https://github.com/notionnext-org/NotionNext) `v4.11.1` 為基底，
 再套用以下客製。之後升級時，先以新版覆蓋，再依本清單逐項套回。
 
-升級前的完整版本保留在 `main` 分支的 commit `86aa4f2`（v4.9.3）。
+升級前的完整版本保留在 `main` 分支的 commit `86aa4f2`（v4.9.3）；
+升級到 v4.11.1 之前的 4.10.10 版本為本分支 commit `8c73db1`。
 
 ## 設定值
 
@@ -30,13 +31,14 @@
 - `index.js`：文章頁移除版權說明與其下方虛線分隔線
 - `components/RightFloatButtons.js`：移除右下角 SocialButton
 - `components/TagItemMiddle.js`：保留舊版標籤外觀（rounded-xl、text-md）
-- `components/Announcement.js`：上方 mt-2
+- `components/Announcement.js`：上方 mt-2（公告標題沿用 4.11 起的 Notion 公告頁標題）
 - `components/ArticleInfo.js`：時間/瀏覽數圖示後加空格
 - `components/TagGroups.js`：「標籤」繁體
 
 ## 全站元件
 
 - `components/AlgoliaSearchModal.js`：搜尋視窗文字繁中化
+  （對應測試 `__tests__/components/AlgoliaSearchModal.test.js`、`__tests__/themes/gitbook/SearchInput.test.js` 的字串也同步改為繁中）
 - `components/ui/dashboard/DashboardButton.js`：「儀表板」
 - `components/AnalyticsBusuanzi.js`：PV / UV 之間加間距
 - `styles/notion.css`：`.notion-quote` 字級 0.8em、文字色 #374151、左側邊線 4px（原 10px）
@@ -46,12 +48,10 @@
 - `config.js`：關閉圖片交錯、版權說明、跳到評論
 - `style.js`：連結底線與顏色 `#3755bf`
 - `index.js`：主區 pt-8
-- `components/Announcement.js`：shadow
+- `components/Announcement.js`：shadow（標題沿用 Notion 公告頁標題）
 - `components/Footer.js`：間距與 PoweredBy 換行
 
 ## 其他
 
 - `.github/workflows`：只保留 codeql、docker-ghcr、pushUrl、sync（sync 訊息繁中化）。
   上游新增的 ci、deploy-docs-site、labeler、originality-proofs、stale、bump-version 未加入，避免在本 repo 產生失敗的 Actions。
-- 從上游 v4.11.0 移植圖片修正（commit `d31a029e`）：支援 Notion 新檔案 CDN `file.notion.com`，
-  新增 `lib/db/notion/convertFileCdnUrl.js`，修改 `mapImage.js`、`getPostBlocks.js`。升級到 v4.11.0 以上即已內建，不需另外套用。
