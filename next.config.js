@@ -246,8 +246,8 @@ const nextConfig = {
     loader: 'default',
     // 图片缓存优化
     minimumCacheTTL: 60 * 60 * 24 * 7, // 7天
-    // 危险的允许SVG
-    dangerouslyAllowSVG: true,
+    // 关闭 SVG 图片优化（GHSA-2464-fhr4-w9xw 加固）
+    dangerouslyAllowSVG: false,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;"
   },
 
